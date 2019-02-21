@@ -1,0 +1,30 @@
+<%= render "menu" %>
+<div class="container">
+<h2> datos del empleado </h2>
+<table class="table table-checkable">
+					<tr>
+						<td> Run </td>
+                        <td><%= @employee.run %></td>
+                    </tr>
+                    <tr>
+                    	<td> Nombre </td>
+                        <td><%= @employee.name %></td>
+                    </tr>
+                    <tr>
+                    	<td> Apellido Paterno </td>
+                        <td><%= @employee.lastname %></td>
+                    </tr>
+                    <tr>
+                    	<td> Apellido Materno </td>
+                        <td><%= @employee.mother_name %></td>
+                    </tr>
+                    <tr>
+                    	<td> Cargo </td>
+                        <td><%= @employee.charge %></td>
+					</tr>
+</table>
+<a href="/employees">volver</a>
+</div>
+<br>
+
+ <%= render "footer" %>

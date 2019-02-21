@@ -1,0 +1,9 @@
+	<tr>
+		<td><%= deed.deed_date %></td>
+		<td><%= deed.description %></td>
+		<td><%= deed.employee.run %></td>
+		<% if !@problem.finished %>
+		<td><%= link_to 'eliminar', [deed.problem, deed], method: :delete, data: { confirm: 'esta seguro'} ,class: "btn btn-danger" %> 
+			<% end %>
+	</tr>
+

@@ -1,0 +1,61 @@
+ <%= form_with model: @problem, local: true do |form| %>
+
+<% if @problem.errors.any? %>
+  <div id="error_explanation" class="alert alert-danger alert-dismissible">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <h2>se ha generado un error:</h2>
+ 
+    <ul>
+    <% @problem.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+
+ <div class="container" >
+            <div class="row">
+                <div class="col-lg-3"></div>
+                <div class="input-group">
+                    <label> Datos Garantia</label>
+                    <table class="table">
+                        <tr>
+                            <td><%= form.label :id , 'numero'%></td>
+                            <td><%= form.number_field :id, :disabled => true %></td>
+                            <%= form.hidden_field :finished => false %>
+                        </tr>
+                        <tr>
+                            <td> <%= form.label :document_type, 'tipo documento' %></td>
+                            <td> <%= form.radio_button :document_type, 'boleta' %>boleta
+                                 <%= form.radio_button :document_type, 'factura'%>factura
+                        </tr>
+                        <tr>
+                             <td><%= form.label :document_number , 'n° documento'%></td>
+                            <td><%= form.number_field :document_number , :required => true %></td>
+                        </tr>
+                        <tr>
+                            <td><%= form.label :buy_at, 'fecha de compra'%></td>
+                            <td><%= form.date_field :buy_at, :required => true %></td>
+                        </tr>
+                        <tr>
+                            <td><%= form.label :product_code, 'codigo producto' %></td>
+                            <td><%= form.text_field :product_code, :required => true %></td>
+                        </tr>
+                        <tr>
+                           <td><%= form.label :client_id, 'codigo cliente' %></td>
+                            <td><%= form.collection_select :client_id, Client.all, :id ,:run %></td>
+                        </tr>
+                        <tr>
+                            <td><%= form.label :employee_id, 'codigo empleado' %></td>
+                            <td><%= form.collection_select :employee_id, Employee.all, :id , :run %></td>
+                        </tr>
+                        <tr>
+                            <td><%= form.submit 'guardar', class: "btn btn-success"%>
+                             <%= form.submit "limpiar", :type => "reset" , class: "btn btn-warning"%></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+<% end %>

@@ -1,0 +1,27 @@
+<%= render "menu" %>
+<div class="container">
+<h2> datos del cliente </h2>
+<table class="table table-checkable">
+					<tr>
+						<td> Run </td>
+                        <td><%= @client.run %></td>
+                    </tr>
+                    <tr>
+                    	<td> Nombre </td>
+                        <td><%= @client.name %></td>
+                    </tr>
+                    <tr>
+                    	<td> Apellido Paterno </td>
+                        <td><%= @client.lastname %></td>
+                    </tr>
+                    <tr>
+                    	<td> Apellido Materno </td>
+                        <td><%= @client.mother_name %></td>
+                    </tr>
+                    
+</table>
+<a href="/client">volver</a>
+</div>
+<br>
+
+ <%= render "footer" %>

@@ -1,0 +1,27 @@
+<%= form_with(model:[ @problem, @problem.deeds.build ], local: true) do |form| %>
+
+
+                <div class="col-lg-6">
+                    <h2>  <b> pagina de pruebas</b></h2>
+                    <table class="table table-striped">
+                        <tr>
+                            <td><%= form.label :deed_date, 'fecha del hito'%></td>
+                            <td><%= form.date_field :deed_date  %></td>
+                        </tr>
+                        <tr>
+                            <td><%= form.label :employee_id, 'codigo empleado' %></td>
+                            <td><%= form.collection_select :employee_id, Employee.all, :id , :run %></td>
+                        </tr>
+                        <tr>
+                            <td><%= form.label :description, 'descripcion' %></td>
+                            <td><%= form.text_field :description %></td>
+                           <% #minlength: 3,  :required => true %> 
+                        </tr>
+                        <tr>
+                           <td><%= form.submit 'guardar', class: "btn btn-success"%></td>
+                        </tr>
+                    </table>
+                 
+                </div>
+
+<% end %>

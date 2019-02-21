@@ -1,0 +1,53 @@
+<%= form_with model: @employee, local: true do |form| %>
+
+        <% if @employee.errors.any? %>
+  <div id="error_explanation" class="alert alert-danger alert-dismissible">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <h2>se ha generado un error:</h2>
+            <ul>
+                <% @employee.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+                <% end %>
+            </ul>
+        </div>
+        <% end %>
+
+
+        <div class="container" >
+            <div class="row">
+                <div class="col-lg-3"></div>
+                <div class="input-group">
+                    <label> Datos Empleado </label>
+                    <table class="table">
+                        <tr>
+                            <td><%= form.label :run %></td>
+                            <td><%= form.text_field :run , :pattern => '[0-9]{7,8}-[0-9]{1,1}',:message => 'debe ser 12345678-9', :required => true,  placeholder: "1234567-1" %></td>
+                        </tr>
+                        <tr>
+                            <td><%= form.label :name, 'nombre' %></td>
+                            <td><%= form.text_field :name, :required => true, minlength: 3 %></td>
+                        </tr>
+                        <tr>
+                            <td><%= form.label :lastname , 'apellido paterno'%></td>
+                            <td><%= form.text_field :lastname, minlength: 3,  :required => true %></td>
+                        </tr>
+                        <tr>
+                            <td><%= form.label :mother_name, 'apellido materno' %></td>
+                            <td><%= form.text_field :mother_name, minlength: 3, :required => true %></td>
+                        </tr>
+                        <tr>
+                            <td><%= form.label :charge, 'cargo' %></td>
+                            <td><%= form.text_field :charge, minlength: 3, :required => true %></td>
+                        </tr>
+                        <tr>
+                            <td><%= form.submit 'guardar', class: "btn btn-success"%>
+                             <%= form.submit "limpiar", :type => "reset" , class: "btn btn-warning"%></td>
+                        </tr>
+                      
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+        <%end %>

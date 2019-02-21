@@ -1,0 +1,32 @@
+<%= render "menu" %>
+        <div class="container">
+            <h2>Listado de empleados</h2>
+            <table class="table table-checkable">
+                <thead>
+                    <tr>
+                        <th>Run</th>
+                        <th>Nombre</th>
+                        <th>Apellido Paterno</th>
+                        <th>Apellido Materno</th>
+                        <th>Cargo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @employees.each do |employee| %>
+                    <tr>
+                        <td><%= employee.run %></td>
+                        <td><%= employee.name %></td>
+                        <td><%= employee.lastname %></td>
+                        <td><%= employee.mother_name %></td>
+                        <td><%= employee.charge %></td>
+                        <td><%= link_to ' editar ', edit_employee_path(employee), class: "btn btn-secondary"  %></td>
+
+                    </tr>
+<% end %>
+                </tbody>
+            </table>
+            <br>
+            <%= link_to 'Nuevo', new_employee_path , class: "btn btn-primary" %>
+        </div>
+
+<%= render "footer" %>

@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  created_at: MyString
+  note: MyString
+  finished_at: 2019-01-14
+  finished: false
+  document_type: MyString
+  document_number: 1
+  buy_at: 2019-01-14
+  product_code: 1
+
+two:
+  created_at: MyString
+  note: MyString
+  finished_at: 2019-01-14
+  finished: false
+  document_type: MyString
+  document_number: 1
+  buy_at: 2019-01-14
+  product_code: 1

@@ -1,0 +1,68 @@
+<%= render "menu" %>
+        <div class="container">
+            <h2>Listdo de Garantias</h2>
+            <div class="form-group row">
+                <div>
+                    <%= form_tag(problems_path, method: :get) do %>
+                  <%= text_field_tag :search, params[:search]%>
+                 <%= submit_tag ("buscar"), class: "btn btn-info"%>
+                 <% end %>
+                </div> 
+
+                <label> &nbsp;&nbsp;&nbsp;&nbsp;  Estado de la garantia</label>
+                <select name="estado" class="form-control-static" >
+                    <option >todas</option>
+                    <option>Pendientes</option>
+                    <option>finalizadas</option>
+                </select></div>
+            <table class="table table-checkable">
+                <thead>
+                    <tr>
+                        <th>Codigo</th>
+                        <th>Fecha creacion</th>
+                        <th>Cliente</th>
+                        <th>Encargado</th>
+                        <th>Producto</th>
+                        <th>Estado</th>
+                        <th>tipo documento</th>
+                        <th>n° documento</th>
+                        <th>fecha de compra</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <% if @problems.any? %>
+                  <% @problems.each  do |problem| %>     
+                        <td><%= problem.id %> </td>
+                        <td><%= problem.created_at.strftime("%d/%m/%Y") %></td>
+                        <td><%= problem.client.run %></td>
+                        <td><%= problem.employee.run %></td>
+                        <td><%= problem.product_code %></td>
+                        <td><%= if problem.finished 
+                                    'finalizada'
+                                else 'abierta'
+                                end
+                         %></td>
+                        <td><%= problem.document_type %></td>
+                        <td><%= problem.document_number %></td>
+                        <td><%= problem.buy_at %></td>
+                        <td><%= link_to 'revisar',problem_path(problem), class: "btn btn-info" %>
+                            <%= link_to 'editar',edit_problem_path(problem), class: "btn btn-secondary" %>
+                        </td>
+                    </tr>
+                <% end %>
+<% else %>
+<td colspan="4"><b> no se encuentra el problema indicado</b> </td>
+<% end %>
+
+                </tbody>
+            </table>
+             <div >
+             <%= paginate @problems %> 
+             </div>
+             <br>
+            <br>
+           <%= link_to 'Nuevo', new_problem_path , class: "btn btn-primary" %>
+
+
+            <%= render "footer" %>

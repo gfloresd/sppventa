@@ -1,0 +1,45 @@
+       <%= render "menu" %>
+        <div class="container">
+            <h2>Listado de clientes</h2>
+            <div class="form-group">
+                <%= form_tag(clients_path, method: :get) do %>
+                <%= text_field_tag :search, params[:search]%>
+                <%= submit_tag ("buscar"), class: "btn btn-info"%>
+                <% end %>
+            </div>
+            <table class="table table-checkable">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellido Paterno</th>
+                        <th>Apellido Materno</th>
+                        <th>Run</th>
+                    </tr>
+                </thead>
+                <tbody>
+                                            <% if @clients.any? %>
+                    <% @clients.each do |client| %>
+                    <tr>
+                        <td><%= client.name %></td>
+                        <td><%= client.lastname %></td>
+                        <td><%= client.mother_name %></td>
+                        <td><%= client.run %></td>
+                        <td><%= link_to ' editar ', edit_client_path(client), class: "btn btn-secondary" %></td>
+                    </tr>
+                    <% end %>
+                    <% else %>
+<td colspan="4"><b> no se encuentra el cliente indicado</b> </td>
+<% end %>
+                </tbody>
+            </table>
+                         <div >
+             <%= paginate @clients %> 
+             </div>
+             <br>
+            <br>
+             <%= link_to 'Nuevo', new_client_path, class: "btn btn-primary" %>
+             <br>
+
+
+        </div>
+            <%= render "footer" %>

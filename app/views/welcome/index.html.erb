@@ -1,0 +1,44 @@
+<%= render "menu" %>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2"></div>
+                <div class="col-lg-6">
+                    <h2>  <b>Garantias</b></h2>
+                    <h2> casos con atraso </h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Fecha creacion</th>
+                        <th>codigo</th>
+                        <th>Cliente</th>
+                        <th>Encargado</th>
+                        <th>Producto</th>
+                        <th>ultimo hito </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                  <% @problems.each  do |problem| %>     
+                        <td><%= problem.created_at.strftime("%d/%m/%Y") %></td>
+                        <td><%= problem.id %>
+                        <td><%= problem.client.run %></td>
+                        <td><%= problem.employee.run %></td>
+                        <td><%= problem.product_code %></td>
+                        <% if problem.deeds.any? %>
+                           <td><%= problem.deeds.last.created_at.strftime("%d/%m/%Y") %>  
+                        <% else %>
+                            <td> no tiene hitos </td>
+                        <% end %>  
+                        <td><%= link_to 'revisar',problem_path(problem), class: "btn btn-info" %>
+                        </td>
+                    </tr>
+                <% end %>
+                </tbody>
+            </table>
+                </div>
+            </div>
+        </div>
+
+
+<%= render "footer" %>

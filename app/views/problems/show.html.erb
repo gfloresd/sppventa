@@ -1,0 +1,80 @@
+ <%= render "menu" %>
+
+<div class="container">
+<h2> datos de la garantia </h2>
+<table class="table table-bordered">
+	<tr>
+			<td> codigo </td>
+            <td><%= @problem.id %> </td>
+    </tr>
+    <tr>
+        <td>fecha creacion</td>
+        <td><%= @problem.created_at.strftime("%d/%m/%Y") %></td>
+    </tr>
+    <tr>
+    	<td> run cliente </td>
+        <td><%= @problem.client.run %></td>
+    </tr>
+    <tr>
+    	<td> run empleado </td>
+        <td><%= @problem.employee.run %></td>
+    </tr>
+    <tr>
+    	<td> codigo producto </td>
+        <td><%= @problem.product_code %></td>
+    </tr>
+    <tr>
+    	<td> estado </td>
+        <td><%= if @problem.finished 
+                                    'finalizada'
+                                else 'abierta'
+                                end
+                         %></td>
+    </tr>
+    <tr>                
+    					<td> tipo de documento </td>     
+                        <td><%= @problem.document_type %></td>
+    </tr>
+    <tr>
+    	<td> n° documento </td>
+                        <td><%= @problem.document_number %></td>
+    </tr>
+    <tr>
+    	<td> fecha de compra </td>
+                        <td><%= @problem.buy_at %></td>
+    </tr>
+    <% if !@problem.finished %>
+    <tr>
+        <td><%= link_to 'cerrar', finish_problem_path(@problem), method: :post, data: { confirm: 'esta seguro'}, class: "btn btn-danger" %> </td>
+    </tr>
+        <% end %>
+</table>
+
+</div>
+
+<div class="container">
+    <h4> Hitos de la garantia </h4>
+    <table class = "table table-striped">
+    	<thead>
+    		<tr>
+    			<th>fecha hito</th>
+    			<th>descripcion</th>
+    			<th>empleado </th>
+    		</tr>	
+    	</thead>
+    	<tbody>
+            <%= render @problem.deeds %>
+    	</tbody>
+    </table>
+    <h3> agregar hito </h3>
+    <% if  @problem.finished %>
+        <h4> orden finalizada </h4>
+    <% else %>
+    <h4> orden finalizada </h4>
+        <%= render 'deeds/form'%>
+    <% end %>
+    <br><br><br><br>
+    <a href="/problems">volver</a>
+</div>	
+<br>
+ <%= render "footer" %>

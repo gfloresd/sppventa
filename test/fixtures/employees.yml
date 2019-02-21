@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  run: MyString
+  nombre: MyString
+  apellidoP: MyString
+  apellidoM: MyString
+  cargo: MyString
+
+two:
+  run: MyString
+  nombre: MyString
+  apellidoP: MyString
+  apellidoM: MyString
+  cargo: MyString

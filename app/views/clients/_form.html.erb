@@ -1,0 +1,49 @@
+<%= form_with model: @client, local: true do |form| %>
+
+<% if @client.errors.any? %>
+  <div id="error_explanation" class="alert alert-danger alert-dismissible">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <h2>se ha generado un error:</h2>
+    <ul>
+    <% @client.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+  <div >
+
+
+        <div class="container" >
+            <div class="row">
+                <div class="col-lg-3"></div>
+                <div class="input-group">
+                    <label> Datos Cliente</label>
+                    <table class="table">
+                        <tr>
+                            <td><%= form.label :run %></td>
+                            <td><%= form.text_field :run,  :pattern => '[0-9]{7,8}-[0-9]{1,1}',:message => 'debe ser 12345678-9', :required => true,  placeholder: "1234567-1" %></td>
+                        </tr>
+                        <tr>
+                            <td><%= form.label :name, 'nombre' %></td>
+                            <td><%= form.text_field :name , minlength: 3,  :required => true %></td>
+                        </tr>
+                        <tr>
+                            <td><%= form.label :lastname , 'apellido paterno'%></td>
+                            <td><%= form.text_field :lastname , minlength: 3,  :required => true %></td>
+                        </tr>
+                        <tr>
+                            <td><%= form.label :mother_name, 'apellido materno' %></td>
+                            <td><%= form.text_field :mother_name, minlength: 3,  :required => true %></td>
+                        </tr>
+                        <tr>
+                            <td><%= form.submit 'guardar', class: "btn btn-success"%>
+                             <%= form.submit "limpiar", :type => "reset" ,class: "btn btn-warning"%></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+ <% end %>       
